@@ -1,0 +1,8 @@
+*.pyc
+*.class
+bin/
+obj/
+.vs/
+.env
+.env
+*.key
