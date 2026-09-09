@@ -29,10 +29,23 @@
         "header": [
           {
             "key": "Authorization",
-            "value": "Token 02d5922162538ecc2b194f334092877f6ca89f3b",
-            "description": "admin"
+            "value": "Token {{admin_token}}"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{user_token}}",
+            "disabled": true
           }
         ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
         "url": {
           "raw": "{{base_url}}/api/workshops/",
           "host": [
@@ -56,43 +69,30 @@
           "script": {
             "type": "text/javascript",
             "exec": [
-              "pm.test(\"Successful POST request\", function () {\n    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\n});\n"
+              "pm.test(\"Workshop created\", function () {\n    pm.response.to.have.status(201);\n});\n\nconst json = pm.response.json();\npm.environment.set(\"workshop_id\", json.id);"
             ]
           }
         }
       ],
       "request": {
         "auth": {
-          "type": "basic",
-          "basic": [
-            {
-              "key": "username",
-              "value": "angelina",
-              "type": "string"
-            },
-            {
-              "key": "password",
-              "value": "1234",
-              "type": "string"
-            }
-          ]
+          "type": "noauth"
         },
         "method": "POST",
         "header": [
           {
             "key": "Authorization",
-            "value": "Token e742b1918df932f1fc67834b772c8267617aeee6",
-            "disabled": true
+            "value": "Token {{admin_token}}",
+            "description": "admin"
           },
           {
             "key": "Authorization",
-            "value": "Token 02d5922162538ecc2b194f334092877f6ca89f3b",
-            "disabled": true
+            "value": "Token {{user_token}}"
           }
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n    \"title\": \"создание прототипов в Figma\",\r\n    \"descr\": \"курс по дизайну для недизайнеров\",\r\n    \"date\": \"2025-10-25T12:00:00Z\",\r\n    \"capacity\": 20,\r\n    \"classroom\": 1\r\n}",
+          "raw": "{\r\n    \"title\": \"Тест вместимости\",\r\n    \"descr\": \"Мастер-класс для проверки ограничения количества участников\",\r\n    \"date\": \"2026-11-01T18:00:00Z\",\r\n    \"capacity\": 1,\r\n    \"classroom\": 1\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -139,8 +139,12 @@
         "header": [
           {
             "key": "Authorization",
-            "value": "Token 02d5922162538ecc2b194f334092877f6ca89f3b",
+            "value": "Token {{admin_token}}",
             "disabled": true
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{user_token}}"
           }
         ],
         "url": {
@@ -182,13 +186,16 @@
         "header": [
           {
             "key": "Authorization",
-            "value": "Token 02d5922162538ecc2b194f334092877f6ca89f3b",
-            "disabled": true
+            "value": "Token {{admin_token}}"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{user_token}}"
           }
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n    \"id\": 2,\r\n    \"title\": \"Основы Python — обновлённый курс\",\r\n    \"descr\": \"Новое описание воркшопа\",\r\n    \"date\": \"2026-10-20T18:00:00Z\",\r\n    \"capacity\": 15,\r\n    \"classroom\": 1\r\n}",
+          "raw": "{\r\n    \"id\": 2,\r\n    \"title\": \"Основы Python — обновлённый курс\",\r\n    \"descr\": \"Новое описание воркшопа\",\r\n    \"date\": \"2026-10-20T18:00:00Z\",\r\n    \"capacity\": 15,\r\n    \"classroom\": 2\r\n}",
           "options": {
             "raw": {
               "language": "json"

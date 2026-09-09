@@ -16,7 +16,7 @@
           "script": {
             "type": "text/javascript",
             "exec": [
-              "pm.test(\"Booking created\", function () {\n    pm.response.to.have.status(201);\n});"
+              "pm.test(\"Validation error\", function () {\n    pm.response.to.have.status(400);\n});\npm.test(\"Authentication required\", function () {\n    pm.response.to.have.status(401);\n});"
             ]
           }
         }
@@ -29,20 +29,16 @@
         "header": [
           {
             "key": "Authorization",
-            "value": "Token e742b1918df932f1fc67834b772c8267617aeee6",
-            "description": "user",
-            "disabled": true
+            "value": "Token {{admin_token}}"
           },
           {
             "key": "Authorization",
-            "value": "Token 02d5922162538ecc2b194f334092877f6ca89f3b",
-            "description": "admin",
-            "disabled": true
+            "value": "Token {{user_token}}"
           }
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"workshop\": 7\n}",
+          "raw": "{\n    \"workshop\": 1\n}",
           "options": {
             "raw": {
               "language": "json"

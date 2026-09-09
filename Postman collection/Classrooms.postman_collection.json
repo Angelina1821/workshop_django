@@ -1,0 +1,95 @@
+{
+  "info": {
+    "_postman_id": "7f5fb32b-1fde-49fd-9852-e94ff6ce25d7",
+    "name": "Classrooms",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52811113",
+    "_collection_link": "https://go.postman.co/collection/52811113-7f5fb32b-1fde-49fd-9852-e94ff6ce25d7?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Create Classroom",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{admin_token}}"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{user_token}}",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Класс Информатики\",\r\n    \"address\": \"Санкт-петербург, Школа №3\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/workshops/createclass/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "workshops",
+            "createclass",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Classrooms",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{admin_token}}",
+            "description": "admin"
+          },
+          {
+            "key": "Authorization",
+            "value": "Token {{user_token}}",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/workshops/classrooms/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "workshops",
+            "classrooms",
+            ""
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
