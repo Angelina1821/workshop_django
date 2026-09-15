@@ -1,9 +1,6 @@
-*.pyc
-*.class
-bin/
-obj/
-.vs/
+node_modules/
+dist/
 .env
-.env
-*.key
-db.sqlite3
+coverage/
+*.log
+.DS_Store
