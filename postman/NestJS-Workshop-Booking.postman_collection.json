@@ -1,0 +1,28 @@
+{
+  "info": {
+    "name": "Workshop Booking System — NestJS",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {"key":"baseUrl","value":"http://localhost:3000/api"},
+    {"key":"userToken","value":""},
+    {"key":"adminToken","value":""},
+    {"key":"workshopId","value":"1"},
+    {"key":"bookingId","value":"1"},
+    {"key":"classroomId","value":"1"}
+  ],
+  "item": [
+    {"name":"Register","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"username\": \"testuser\",\n  \"password\": \"Test12345\"\n}"},"url":"{{baseUrl}}/auth/register"}},
+    {"name":"Login","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"username\": \"testuser\",\n  \"password\": \"Test12345\"\n}"},"url":"{{baseUrl}}/auth/login"}},
+    {"name":"List workshops","request":{"method":"GET","url":"{{baseUrl}}/workshops"}},
+    {"name":"Get workshop","request":{"method":"GET","url":"{{baseUrl}}/workshops/{{workshopId}}"}},
+    {"name":"List classrooms","request":{"method":"GET","url":"{{baseUrl}}/workshops/classrooms"}},
+    {"name":"Create classroom — ADMIN","request":{"method":"POST","header":[{"key":"Authorization","value":"Bearer {{adminToken}}"},{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"name\": \"Аудитория 1\",\n  \"address\": \"ул. Примерная, 1\"\n}"},"url":"{{baseUrl}}/workshops/createclass"}},
+    {"name":"Create workshop — ADMIN","request":{"method":"POST","header":[{"key":"Authorization","value":"Bearer {{adminToken}}"},{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"title\": \"Основы Python\",\n  \"descr\": \"Вводный практический воркшоп по Python\",\n  \"date\": \"2026-10-20T18:00:00Z\",\n  \"capacity\": 15,\n  \"classroom\": {{classroomId}}\n}"},"url":"{{baseUrl}}/workshops/create"}},
+    {"name":"Update workshop — ADMIN","request":{"method":"PUT","header":[{"key":"Authorization","value":"Bearer {{adminToken}}"},{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"title\": \"Основы Python — обновлённый курс\",\n  \"descr\": \"Обновлённое описание\",\n  \"date\": \"2026-10-20T18:00:00Z\",\n  \"capacity\": 15,\n  \"classroom\": {{classroomId}}\n}"},"url":"{{baseUrl}}/workshops/{{workshopId}}"}},
+    {"name":"Create booking","request":{"method":"POST","header":[{"key":"Authorization","value":"Bearer {{userToken}}"},{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"workshop\": {{workshopId}}\n}"},"url":"{{baseUrl}}/bookings/create"}},
+    {"name":"List my bookings","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{userToken}}"}],"url":"{{baseUrl}}/bookings"}},
+    {"name":"Cancel booking","request":{"method":"DELETE","header":[{"key":"Authorization","value":"Bearer {{userToken}}"}],"url":"{{baseUrl}}/bookings/{{bookingId}}"}},
+    {"name":"Delete workshop — ADMIN","request":{"method":"DELETE","header":[{"key":"Authorization","value":"Bearer {{adminToken}}"}],"url":"{{baseUrl}}/workshops/{{workshopId}}"}}
+  ]
+}
